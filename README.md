@@ -4,6 +4,9 @@ Authentication with jsonwebtoken and node-express as a backend in react-native a
 Open artist_auth(subdirectory) for frontend and auth_server(subdirectory) for backend.
 
 ### To start
+``` 
+git clone https://github.com/Anadi9/ReactNative_JWT_auth_boilerplate.git
+```
 Clone this repo and follow the intructions given in artist_auth and auth_server.
 
 ### Screenshots
