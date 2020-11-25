@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
-import { Button, Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Button, Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Hand1 from '../assets/hand1.png';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -10,8 +10,8 @@ function RegisterScreen(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const sendCred = async (props) => {
-        await fetch('http://192.168.1.6:8080/api/signup', {
+    const sendCred = async () => {
+        await fetch('YOUR_PC_IP:YOUR_BACKEND_PORT/api/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -27,6 +27,7 @@ function RegisterScreen(props) {
                try {
                    await AsyncStorage.setItem('token', data.token);
                    props.navigation.replace('Home');
+                   Alert.alert('Successfully registered');
                } catch (e) {
                    console.log(e);
                }
@@ -48,7 +49,7 @@ function RegisterScreen(props) {
             <TextInput style={styles.input} label="Name" placeholder="Enter name" selectionColor="#000" value={name} onChangeText={(text) => setName(text)} />
             <TextInput style={styles.input} keyboardType="email-address" label="Email" placeholder="Enter email" selectionColor="#000" textContentType="emailAddress" value={email} onChangeText={(text) => setEmail(text)} />
             <TextInput style={[styles.input, {marginBottom: 30}]} secureTextEntry={true} label="Password" placeholder="Enter password" selectionColor="#000" textContentType="password" value={password} onChangeText={(text) => setPassword(text)} />
-            <Button title="Register" onPress={() => sendCred(props)} />
+            <Button title="Register" onPress={() => sendCred()} />
             </View>
             <View style={{marginVertical: 50,justifyContent: 'center',alignItems: 'center'}}>
                 <Text>Already have an account?</Text>

@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useState } from 'react';
-import { Button, Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Button, Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Hand2 from '../assets/hand2.png';
 
 function LoginScreen(props) {
@@ -10,7 +10,7 @@ function LoginScreen(props) {
     const [password, setPassword] = useState('');
 
     const sendCred = async (props) => {
-        await fetch('http://192.168.1.6:8080/api/signin', {
+        await fetch('YOUR_PC_IP:YOUR_BACKEND_PORT/api/signin', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -25,6 +25,7 @@ function LoginScreen(props) {
                try {
                    await AsyncStorage.setItem('token', data.token);
                    props.navigation.replace('Home');
+                   Alert.alert('Successfully logged in');
                } catch (e) {
                    console.log(e);
                }

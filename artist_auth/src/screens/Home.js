@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Alert, Button, StyleSheet, Text, View } from 'react-native';
 import Video from 'react-native-video';
 import Bgvideo from '../assets/video.mp4';
 
@@ -10,6 +10,7 @@ function HomeScreen(props) {
     const logout = (props) => {
         AsyncStorage.removeItem('token').then(() => {
             props.navigation.replace('Login');
+            Alert.alert('Successfully logged out');
         });
     };
 
